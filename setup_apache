@@ -29,4 +29,12 @@ function read_csv($filename = "data.csv") {
 $csv = read_csv();
 $fields = array_shift($csv);
 
-print_r($fields);
+$template = file_get_contents("templates/wp_vhosts_template.tmpl");
+
+foreach ($fields as $key => $value) {
+	$fields[$key] = "{{".strtoupper($value)."}}";
+}
+
+$result = str_replace($fields, $csv[1], $template);
+
+print_r($template);
