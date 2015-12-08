@@ -27,6 +27,6 @@ function read_csv($filename = "data.csv") {
 //line($reply);
 
 $csv = read_csv();
-$fields = shift($csv);
+$fields = array_shift($csv);
 
 print_r($fields);
