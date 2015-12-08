@@ -38,8 +38,10 @@ foreach ($fields as $key => $value) {
 
 foreach ($csv as $ckey => $cvalue) {
 	$apache = str_replace($fields, $csv[$ckey], $apache_templates);
-	file_put_contents("config_files/" . $csv[0] . ".conf", $apache);
+	mkdir("config_files");
+	file_put_contents("config_files/" . $csv[$ckey][0] . ".conf", $apache);
 	
+	mkdir("scripts");
 	$bash = str_replace($fields, $csv[$ckey], $template);
-	file_put_contents("scripts/scripts/users", $bash, FILE_APPEND);
+	file_put_contents("scripts/users", $bash, FILE_APPEND);
 }	
