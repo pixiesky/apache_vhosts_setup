@@ -15,7 +15,7 @@ function answer($answer, $true) {
 }
 
 function line($val) {
-	echo $val."/n";
+	echo $val/n;
 }
 
 function read_csv($filename = "data.csv") {
@@ -48,5 +48,5 @@ foreach ($csv as $ckey => $cvalue) {
 	
 	$bash = str_replace($fields, $csv[$ckey], $bash_template);
 	line("Appending command to scripts/users");
-	file_put_contents("scripts/users", $bash, FILE_APPEND);
+	file_put_contents("scripts/users", "\n".$bash, FILE_APPEND);
 }
