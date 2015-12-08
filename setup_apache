@@ -29,12 +29,17 @@ function read_csv($filename = "data.csv") {
 $csv = read_csv();
 $fields = array_shift($csv);
 
-$template = file_get_contents("templates/wp_vhosts_template.tmpl");
+$apache_templates = file_get_contents("templates/wp_vhosts_template.tmpl");
+$bash_templates = file_get_contents("templates/bash-setup.tmpl");
 
 foreach ($fields as $key => $value) {
 	$fields[$key] = "{{".strtoupper($value)."}}";
 }
 
-$result = str_replace($fields, $csv[1], $template);
-
-print_r($template);
+foreach ($csv as $ckey => $cvalue) {
+	$apache = str_replace($fields, $csv[$ckey], $apache_templates);
+	file_put_contents("config_files/" . $csv[0] . ".conf", $apache);
+	
+	$bash = str_replace($fields, $csv[$ckey], $template);
+	file_put_contents("scripts/scripts/users", $bash, FILE_APPEND);
+}	
