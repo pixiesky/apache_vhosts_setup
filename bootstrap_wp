@@ -29,9 +29,10 @@ apt-get install apache2 php5 libapache2-mod-php5 php5-mcrypt php5-cli
 
 mkdir -p /var/www/vhosts
 
-# set up config files
-
-#for fn in `cat filenames.txt`; do
-#    echo "the next file is $fn"
-#    cat $fn
-#done
+read -p "Setup Apache and users? y/n" -n 1 -r
+	echo    # (optional) move to a new line
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		./setup_apache
+		# move the config files.
+	fi
