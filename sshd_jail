@@ -1,3 +1,4 @@
+# Added by igoo bootstrap
 Match Group sftponly
         ChrootDirectory %h
         ForceCommand internal-sftp
