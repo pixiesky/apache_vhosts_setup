@@ -25,10 +25,11 @@ function read_csv($filename = "data.csv") {
 //$q = ask("Am I a question? y/n");
 //$reply = (answer($q, "y") ? "true" : "false");
 //line($reply);
-
+line("Reading CSV file");
 $csv = read_csv();
 $fields = array_shift($csv);
 
+line("Reading templates");
 $apache_template = file_get_contents("templates/wp_vhosts_template.tmpl");
 $bash_template = file_get_contents("templates/bash-setup.tmpl");
 
@@ -39,11 +40,13 @@ foreach ($fields as $key => $value) {
 	if(!file_exists("config_files")) mkdir("config_files");
 	if(!file_exists("scripts")) mkdir("scripts");
 	
-
+line("Writing Files ...");
 foreach ($csv as $ckey => $cvalue) {
 	$apache = str_replace($fields, $csv[$ckey], $apache_template);
+	line("Creating " . "config_files/" . $csv[$ckey][0] . ".conf");
 	file_put_contents("config_files/" . $csv[$ckey][0] . ".conf", $apache);
 	
 	$bash = str_replace($fields, $csv[$ckey], $bash_template);
+	line("Appending command to scripts/users");
 	file_put_contents("scripts/users", $bash, FILE_APPEND);
 }

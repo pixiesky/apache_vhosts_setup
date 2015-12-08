@@ -18,7 +18,8 @@ else
 		if ! cat ./sshd_jail >> /etc/ssh/sshd_config; then
 			echo "Error changing config"
 			exit 1;
-		fi	
+		fi
+		groupadd sftponly
 	fi
 fi
 
