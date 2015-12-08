@@ -36,7 +36,7 @@ read -p "Setup Apache and users? y/n" -n 1 -r
 	then
 		./setup_apache
 		# move the config files.
-		mv config_files/* /etc/apache2/sites-available
+		mv config_files/* /etc/apache2/sites-available/
 		# run users script and delete it
 		chmod o+x scripts/users
 		./scripts/users

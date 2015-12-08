@@ -15,7 +15,7 @@ function answer($answer, $true) {
 }
 
 function line($val) {
-	echo $val/n;
+	echo $val."/n";
 }
 
 function read_csv($filename = "data.csv") {
