@@ -1,0 +1,37 @@
+#!/bin/bash
+if [ "$(whoami)" != 'root' ]; then
+echo "You have to execute this script as root user"
+exit 1;
+fi
+
+echo "Checking SSH config..."
+if cat /etc/ssh/sshd_config | grep "# Added by igoo bootstrap"; then 
+	echo "The jail user configuration seems to have already been installed, no further action will be taken for this."
+	read -rsp $'Press any key to continue...\n' -n1 key
+else
+	
+	read -p "Would you like to add the jail config to /etc/ssh/sshd_config now? " -n 1 -r
+	echo    # (optional) move to a new line
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		echo "Adding jail ssh configuration"
+		if ! cat ./sshd_jail >> /etc/ssh/sshd_config; then
+			echo "Error changing config"
+			exit 1;
+		fi	
+	fi
+fi
+
+echo "Installing Apache2 and php from apt-get repo. (Does not install mysql)"
+apt-get update
+apt-get upgrade
+apt-get install apache2 php5 libapache2-mod-php5 php5-mcrypt php5-cli
+
+mkdir -p /var/www/vhosts
+
+# set up config files
+
+#for fn in `cat filenames.txt`; do
+#    echo "the next file is $fn"
+#    cat $fn
+#done

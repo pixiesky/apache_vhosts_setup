@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerAdmin admin@{{DOMAIN}}
+    DocumentRoot /var/www/vhosts/{{DOMAIN}}
+    ServerName {{DOMAIN}}
+    <Directory /var/www/vhosts/{{DOMAIN}}>
+        AllowOverride All
+    </Directory>
+</VirtualHost>

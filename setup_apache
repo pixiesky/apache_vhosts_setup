@@ -1,0 +1,32 @@
+#!/usr/bin/php
+
+<?php
+function ask($prompt) {
+	echo $prompt . " :";
+	return fopen ("php://stdin","r");
+}
+
+function answer($answer, $true) {
+	$line = fgets($answer);
+	
+	if(trim($line) == $true){
+    	return true;
+    }
+}
+
+function line($val) {
+	echo $val."/n";
+}
+
+function read_csv($filename = "data.csv") {
+	return array_map('str_getcsv', file($filename));
+}
+
+//$q = ask("Am I a question? y/n");
+//$reply = (answer($q, "y") ? "true" : "false");
+//line($reply);
+
+$csv = read_csv();
+$fields = shift($csv);
+
+print_r($fields);

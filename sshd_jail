@@ -1,0 +1,4 @@
+Match Group sftponly
+        ChrootDirectory %h
+        ForceCommand internal-sftp
+        AllowTcpForwarding no
