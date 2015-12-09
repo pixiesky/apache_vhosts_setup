@@ -1,6 +1,6 @@
 echo "Adding user: {{USER}}"
 mkdir -p /var/www/vhosts/{{DOMAIN}}/public_html
-useradd -b /var/www/vhosts/{{DOMAIN}}/ -G sftponly {{USER}}
+useradd -d /var/www/vhosts/{{DOMAIN}}/ -G sftponly {{USER}}
 echo '{{USER}}:{{PASSWORD}}' | chpasswd
 chown -R {{USER}} /var/www/vhosts/{{DOMAIN}}/public_html 
 #
