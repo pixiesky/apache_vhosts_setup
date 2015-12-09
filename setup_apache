@@ -41,6 +41,7 @@ foreach ($fields as $key => $value) {
 	if(!file_exists("scripts")) mkdir("scripts");
 	
 line("Writing Files ...");
+
 foreach ($csv as $ckey => $cvalue) {
 	$apache = str_replace($fields, $csv[$ckey], $apache_template);
 	line("Creating " . "config_files/" . $csv[$ckey][0] . ".conf");
